@@ -2,6 +2,8 @@ package mod.crend.movesubtitles;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,6 +11,7 @@ import java.nio.file.Path;
 
 public class MoveSubtitlesConfig {
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+	private static final Logger LOGGER = LoggerFactory.getLogger(MoveSubtitlesConfig.class);
 	private static Path configPath;
 
 	public static MoveSubtitlesConfig INSTANCE;
@@ -28,6 +31,7 @@ public class MoveSubtitlesConfig {
 					needsSave = true;
 				}
 			} catch (Exception e) {
+				LOGGER.warn("Failed to load config, using defaults.", e);
 				INSTANCE = new MoveSubtitlesConfig();
 				needsSave = true;
 			}
@@ -56,6 +60,7 @@ public class MoveSubtitlesConfig {
 			Files.createDirectories(configPath.getParent());
 			Files.writeString(configPath, GSON.toJson(get()));
 		} catch (IOException ignored) {
+			LOGGER.warn("Failed to save config.", ignored);
 		}
 	}
 }
