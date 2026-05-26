@@ -1,6 +1,6 @@
 plugins {
 	id 'fabric-loom' version '1.5-SNAPSHOT'
-	id "me.shedaniel.unified-publishing" version "0.1.+"
+	id "me.shedaniel.unified-publishing" version "0.1.+" apply false
 }
 
 version = project.mod_version
@@ -52,28 +52,33 @@ jar {
 	}
 }
 
-unifiedPublishing {
-	project {
-		displayName = "[${project.supported_versions_string}] ${project.mod_name} ${project.mod_version}"
-		version = "${project.mod_version}+${project.minecraft_version}"
-		changelog = "${project.changelog}"
-		releaseType = "${project.release_type}"
-		gameVersions = List.of(project.supported_versions.split(';'))
-		gameLoaders = ["fabric"]
+def publishingEnabled = System.getenv("CURSEFORGE_TOKEN") || System.getenv("MODRINTH_TOKEN")
+if (publishingEnabled) {
+	apply plugin: "me.shedaniel.unified-publishing"
 
-		mainPublication tasks.remapJar
+	unifiedPublishing {
+		project {
+			displayName = "[${project.supported_versions_string}] ${project.mod_name} ${project.mod_version}"
+			version = "${project.mod_version}+${project.minecraft_version}"
+			changelog = "${project.changelog}"
+			releaseType = "${project.release_type}"
+			gameVersions = List.of(project.supported_versions.split(';'))
+			gameLoaders = ["fabric"]
 
-		if (System.getenv("CURSEFORGE_TOKEN")) {
-			curseforge {
-				token = System.getenv("CURSEFORGE_TOKEN")
-				id = rootProject.curseforge_id
+			mainPublication tasks.remapJar
+
+			if (System.getenv("CURSEFORGE_TOKEN")) {
+				curseforge {
+					token = System.getenv("CURSEFORGE_TOKEN")
+					id = rootProject.curseforge_id
+				}
 			}
-		}
 
-		if (System.getenv("MODRINTH_TOKEN")) {
-			modrinth {
-				token = System.getenv("MODRINTH_TOKEN")
-				id = rootProject.modrinth_id
+			if (System.getenv("MODRINTH_TOKEN")) {
+				modrinth {
+					token = System.getenv("MODRINTH_TOKEN")
+					id = rootProject.modrinth_id
+				}
 			}
 		}
 	}
