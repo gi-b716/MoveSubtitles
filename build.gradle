@@ -52,8 +52,8 @@ jar {
 	}
 }
 
-def publishingEnabled = System.getenv("CURSEFORGE_TOKEN") || System.getenv("MODRINTH_TOKEN")
-if (publishingEnabled) {
+def hasPublishingTokens = System.getenv("CURSEFORGE_TOKEN") || System.getenv("MODRINTH_TOKEN")
+if (hasPublishingTokens) {
 	apply plugin: "me.shedaniel.unified-publishing"
 
 	unifiedPublishing {
