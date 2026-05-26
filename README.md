@@ -12,6 +12,7 @@ Get packaged versions from [Modrinth](https://modrinth.com/mod/move-subtitles) o
 
 The configuration file (created on first launch) contains an "edge" key that can be set to any of `TOP_LEFT`, `TOP`, `TOP_RIGHT`, `LEFT`, `RIGHT`, `BOTTOM_LEFT`, `BOTTOM`, `BOTTOM_RIGHT`.
 You may use the `deltaX` and `deltaY` values to manually tweak positioning relative to the configured edge position.
+You can also edit these values in-game through Mod Menu (with YetAnotherConfigLib installed).
 
 ## Mod Compatibility
 

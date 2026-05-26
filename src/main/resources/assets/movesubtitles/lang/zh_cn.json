@@ -1,0 +1,10 @@
+{
+  "movesubtitles.config.title": "移动字幕",
+  "movesubtitles.config.category.general": "常规",
+  "movesubtitles.config.edge": "屏幕边缘",
+  "movesubtitles.config.edge.desc": "字幕锚定的屏幕边缘。",
+  "movesubtitles.config.delta_x": "水平偏移",
+  "movesubtitles.config.delta_x.desc": "调整字幕在 X 轴的位置。",
+  "movesubtitles.config.delta_y": "垂直偏移",
+  "movesubtitles.config.delta_y.desc": "调整字幕在 Y 轴的位置。"
+}
