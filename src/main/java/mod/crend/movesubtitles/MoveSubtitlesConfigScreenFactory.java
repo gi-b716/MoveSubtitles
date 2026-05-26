@@ -9,8 +9,8 @@ import dev.isxander.yacl3.api.controller.FloatFieldControllerBuilder;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
-public final class MoveSubtitlesConfigScreen {
-	private MoveSubtitlesConfigScreen() {
+public final class MoveSubtitlesConfigScreenFactory {
+	private MoveSubtitlesConfigScreenFactory() {
 	}
 
 	public static Screen create(Screen parent) {

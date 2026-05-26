@@ -2,6 +2,7 @@ package mod.crend.movesubtitles;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +16,7 @@ public class MoveSubtitlesConfig {
 	private static Path configPath;
 
 	public static MoveSubtitlesConfig INSTANCE;
+	public static final String CONFIG_FILE = MoveSubtitles.MOD_ID + ".json";
 
 	public ScreenEdge edge = ScreenEdge.BOTTOM_RIGHT;
 	public float deltaX = 0.0F;
@@ -48,6 +50,9 @@ public class MoveSubtitlesConfig {
 	public static MoveSubtitlesConfig get() {
 		if (INSTANCE == null) {
 			INSTANCE = new MoveSubtitlesConfig();
+		}
+		if (configPath == null) {
+			configPath = FabricLoader.getInstance().getConfigDir().resolve(CONFIG_FILE);
 		}
 		return INSTANCE;
 	}
