@@ -28,9 +28,17 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
       - name: Build
         run: ./gradlew build
+      - name: Prepare artifact name
+        id: artifact_name
+        env:
+          BRANCH_NAME: ${{ inputs.branch || github.ref_name }}
+          SHA: ${{ github.sha }}
+        run: |
+          SAFE_BRANCH="${BRANCH_NAME//\//-}"
+          echo "name=movesubtitles-${SAFE_BRANCH}-${SHA}" >> "$GITHUB_OUTPUT"
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: movesubtitles-${{ replace(inputs.branch || github.ref_name, '/', '-') }}-${{ github.sha }}
+          name: ${{ steps.artifact_name.outputs.name }}
           path: build/libs/*.jar
           if-no-files-found: error
