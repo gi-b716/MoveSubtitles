@@ -1,0 +1,36 @@
+name: Build
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Branch or ref to build
+        required: false
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch || github.ref }}
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+      - name: Build
+        run: gradle build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: movesubtitles-${{ inputs.branch || github.ref_name }}-${{ github.sha }}
+          path: build/libs/*.jar
+          if-no-files-found: error
