@@ -16,6 +16,9 @@
 	"entrypoints": {
 		"client": [
 			"mod.crend.movesubtitles.MoveSubtitles"
+		],
+		"modmenu": [
+			"mod.crend.movesubtitles.MoveSubtitlesModMenu"
 		]
 	},
 	"mixins": [
@@ -24,6 +27,10 @@
 	"depends": {
 		"fabricloader": "${fabric_loader_version_range}",
 		"minecraft": "${minecraft_version_range}",
-		"java": ">=17"
+		"java": ">=17",
+		"yet_another_config_lib_v3": "*"
+	},
+	"suggests": {
+		"modmenu": "*"
 	}
 }

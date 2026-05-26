@@ -1,0 +1,10 @@
+{
+  "movesubtitles.config.title": "Move Subtitles",
+  "movesubtitles.config.category.general": "General",
+  "movesubtitles.config.edge": "Edge",
+  "movesubtitles.config.edge.desc": "Screen edge that subtitles anchor to.",
+  "movesubtitles.config.delta_x": "Horizontal offset",
+  "movesubtitles.config.delta_x.desc": "Adjust the subtitle position on the X axis.",
+  "movesubtitles.config.delta_y": "Vertical offset",
+  "movesubtitles.config.delta_y.desc": "Adjust the subtitle position on the Y axis."
+}
