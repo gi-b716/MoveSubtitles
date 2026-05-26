@@ -59,8 +59,8 @@ public class MoveSubtitlesConfig {
 		try {
 			Files.createDirectories(configPath.getParent());
 			Files.writeString(configPath, GSON.toJson(get()));
-		} catch (IOException ignored) {
-			LOGGER.warn("Failed to save config.", ignored);
+		} catch (IOException e) {
+			LOGGER.warn("Failed to save config.", e);
 		}
 	}
 }
