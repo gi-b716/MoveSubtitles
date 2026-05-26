@@ -22,7 +22,7 @@ public class MoveSubtitlesConfig {
 	public float deltaX = 0.0F;
 	public float deltaY = 0.0F;
 
-	public static void load(Path configFile) {
+	public static synchronized void load(Path configFile) {
 		configPath = configFile;
 		boolean needsSave = false;
 		if (Files.exists(configFile)) {
@@ -47,7 +47,7 @@ public class MoveSubtitlesConfig {
 		}
 	}
 
-	public static MoveSubtitlesConfig get() {
+	public static synchronized MoveSubtitlesConfig get() {
 		if (INSTANCE == null) {
 			INSTANCE = new MoveSubtitlesConfig();
 		}
@@ -57,8 +57,9 @@ public class MoveSubtitlesConfig {
 		return INSTANCE;
 	}
 
-	public static void save() {
+	public static synchronized void save() {
 		if (configPath == null) {
+			LOGGER.warn("Config path is not set; skipping save.");
 			return;
 		}
 		try {
